@@ -47,6 +47,9 @@ int main(void) {
 	initUart();
 	initSwitchesAndLeds();
 
+	NVIC_CPAC_R = 0x00F00000;
+
+
 	while (1) {
 		if (isSwitch1Pressed()) {
 			toggleLeds(PINK);

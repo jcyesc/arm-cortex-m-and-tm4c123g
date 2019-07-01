@@ -1,6 +1,7 @@
 #include "wifi_scan.h"
 
 #include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 
@@ -32,10 +33,9 @@ WifiScanContent wifi_scans[MAX_WIFI_SCANS];
  * 					 an index.
  */
 static uint8_t getRssiIndex(const float rssi_value) {
-	uint8_t rssi_index = 0;
 	assert(rssi_value <= 20.0f && rssi_value >= -100.0f);
+	uint8_t rssi_index = -(rssi_value - 20) / 0.5f;
 
-	rssi_index = -(rssi_value - 20) / 0.5f;
 	return rssi_index;
 }
 
@@ -47,8 +47,13 @@ static uint8_t getRssiIndex(const float rssi_value) {
  * @param len Number of bytes to send
  */
 static void transmitPacket(const void *data, size_t len) {
+	static int counter = 0;
+	static char buffer[20];
+
 	putString("\n===================================");
-	putString("\nTransmitting packet");
+	putString("\nTransmitting packet ");
+	sprintf(buffer, "#%d ", ++counter);
+	putChars(buffer, strlen(buffer));
 	putString("\n===================================\n");
 
 	putChars(data, len);
@@ -70,36 +75,30 @@ static void transmitPacket(const void *data, size_t len) {
  */
 void sendWifiScanResult(size_t ap_count, const char **ssid_list,
 		const uint8_t **bssid_list, const float *rssi_list) {
-	size_t data_size;
-	uint8_t j;
-	uint8_t i;
-	void *data;
-	uint8_t index;
-	WifiScanContent *wifi_scan;
 	putString("\n===================================");
-	putString("\nProcessing Wifi Scan");
+	putString("\nProcessing Wifi Scans");
 	putString("\n===================================\n");
 
 	// Cleaning the memory that will be used.
-	data_size = ap_count * sizeof(WifiScanContent);
+	size_t data_size = ap_count * sizeof(WifiScanContent);
 	memset(wifi_scans, 0, data_size);
 
-	data = (void *) wifi_scans;
-	wifi_scan = wifi_scans;
-	for (i = 0; i < ap_count; i++) {
+	void *data = (void *) wifi_scans;
+	WifiScanContent *wifi_scan = wifi_scans;
+	for (uint8_t i = 0; i < ap_count; i++) {
 		assert(strlen(ssid_list[i]) <= SSID_LENGTH);
 		strcpy(wifi_scan->ssid, ssid_list[i]);
 
-		// TODO(jcyesc): Fix this line of code. How to enable the FPU?
-		// wifi_scan->rssi_index = getRssiIndex(rssi_list[i]);
+		wifi_scan->rssi_index = getRssiIndex(rssi_list[i]);
 
-		for (j = 0; j < NETWORK_ID_SIZE; j++) {
+		for (uint8_t j = 0; j < NETWORK_ID_SIZE; j++) {
 			wifi_scan->bssid[j] = bssid_list[i][j];
 		}
 
 		wifi_scan++;
 	}
-	putString("\nFinish encoding...\n");
+
+	putString("\nFinished encoding...\n");
 
 	transmitPacket(data, data_size);
 }
