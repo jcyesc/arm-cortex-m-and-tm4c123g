@@ -8,6 +8,7 @@
 
 #define MAX_WIFI_SCANS 200 // Defines the Maximum number of wifi scans.
 
+/** Reserve space to store 200 Wifi Scans */
 WifiScanContent wifi_scans[MAX_WIFI_SCANS];
 
 /**
@@ -78,8 +79,8 @@ void sendWifiScanResult(size_t ap_count, const char **ssid_list,
 	putString("\nProcessing Wifi Scan");
 	putString("\n===================================");
 
-	// Cleaning the memory that will be used.
 	data_size = ap_count * sizeof(WifiScanContent);
+	// Cleaning the memory that will be used.
 	memset(wifi_scans, 0, data_size);
 
 	data = (void *) wifi_scans;
