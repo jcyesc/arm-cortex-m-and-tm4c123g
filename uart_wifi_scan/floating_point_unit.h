@@ -1,5 +1,4 @@
 
-
 #ifndef FLOATING_POINT_UNIT_H_
 #define FLOATING_POINT_UNIT_H_
 
@@ -17,12 +16,11 @@
  * will hang.
  */
 
-#include "../uart_wifi_scan/tm4c123gh6pm.h"
+#include "tm4c123gh6pm.h"
 
-inline void initFloatingPointUnit(void){
-   	NVIC_CPAC_R = 0x00F00000;
+inline void initFloatingPointUnit(void) {
+	NVIC_CPAC_R = 0x00F00000;
 }
 
 #endif /* FLOATING_POINT_UNIT_H_ */
-
 

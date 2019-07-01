@@ -5,12 +5,11 @@
  * - Assumes a 50MHz bus, clock.
  */
 
-#include "../uart_wifi_scan/uart_driver.h"
-
 #include <stdint.h>
 #include <stdlib.h>
 
-#include "../uart_wifi_scan/tm4c123gh6pm.h"
+#include "tm4c123gh6pm.h"
+#include "uart_driver.h"
 
 /**
  * Initiates the ritual to configure the UART 0 port.
@@ -45,15 +44,13 @@ void putChar(char data) {
 }
 
 void putChars(const char *chars, size_t length) {
-	uint32_t i;
-	for (i = 0; i < length; i++) {
+	for (uint32_t i = 0; i < length; i++) {
 		putChar(*chars++);
 	}
 }
 
 void putString(const char *string) {
-	uint32_t i;
-	for (i = 0; string[i] != 0; i++) {
+	for (uint32_t i = 0; string[i] != 0; i++) {
 		putChar(string[i]);
 	}
 }

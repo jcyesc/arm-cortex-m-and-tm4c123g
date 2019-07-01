@@ -4,7 +4,17 @@
 Contains the implementation of the Wifi Scan using the
 microntroller TM4C123G.
 
-This project is done using Keil Micro Vision4.
+This project is done using Keil Micro Vision4 and is compiled using
+the `--c99` flag.
+
+## Goals
+The objective of this project is to be able to transfer wifi scan data
+from the microcontroller (MCU) to another device using the UART interface.
+
+In order to use the interce, several modules have to be configured such as:
+
+- Phase Lock Loop (PLL)
+- Port F to enable UART serial communication
 
 ## Configuration
 

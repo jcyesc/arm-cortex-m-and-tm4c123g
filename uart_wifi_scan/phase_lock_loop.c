@@ -1,8 +1,7 @@
-#include "../uart_wifi_scan/phase_lock_loop.h"
-
 #include <stdint.h>
 
-#include "../uart_wifi_scan/tm4c123gh6pm.h"
+#include "phase_lock_loop.h"
+#include "tm4c123gh6pm.h"
 
 /**
  * Define the value of divisor to initialize the

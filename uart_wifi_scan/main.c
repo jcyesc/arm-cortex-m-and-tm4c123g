@@ -1,11 +1,11 @@
 #include <string.h>
 
-#include "../uart_wifi_scan/phase_lock_loop.h"
-#include "../uart_wifi_scan/switches_and_leds.h"
-#include "../uart_wifi_scan/systick.h"
-#include "../uart_wifi_scan/tm4c123gh6pm.h"
-#include "../uart_wifi_scan/uart_driver.h"
-#include "../uart_wifi_scan/wifi_scan.h"
+#include "floating_point_unit.h"
+#include "phase_lock_loop.h"
+#include "switches_and_leds.h"
+#include "systick.h"
+#include "uart_driver.h"
+#include "wifi_scan.h"
 
 int main(void);
 
@@ -32,28 +32,26 @@ void SystemInit(void) {
  * The RGB leds are using as a indicators.
  */
 int main(void) {
-	volatile unsigned long delay = 1;
 	/**
 	 * Defines the Wifi Scan data to be sent using the UART interface.
 	 */
 	const size_t kAccessPointCount = 2;
-	const char *ssid_list[kAccessPointCount] = { "letsethe", "abcdd" };
+	const char *ssid_list[kAccessPointCount] = { "Nice", "Job" };
 	const uint8_t bssid1[6] = { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 };
 	const uint8_t bssid2[6] = { 0x11, 0x22, 0x33, 0x44, 0x55, 0x66 };
 	const uint8_t *bssid_list[kAccessPointCount] = { bssid1, bssid2 };
-	const float rssi_list[kAccessPointCount] = { -48.0f, -50.5f };
+	const float rssi_list[kAccessPointCount] = { -48.0f, -55.5f };
 
 	initPhaseLockLoop();
 	initSystick();
 	initUart();
 	initSwitchesAndLeds();
+	initFloatingPointUnit();
 
-	NVIC_CPAC_R = 0x00F00000;
-
-
+	volatile unsigned long delay = 1;
 	while (1) {
 		if (isSwitch1Pressed()) {
-			toggleLeds(PINK);
+			toggleLeds(GREEN);
 			delay = 50; // 500 ms second
 			sendWifiScanResult(kAccessPointCount, ssid_list, bssid_list,
 					rssi_list);

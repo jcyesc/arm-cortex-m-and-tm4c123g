@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-#include "../uart_wifi_scan/tm4c123gh6pm.h"
+#include "tm4c123gh6pm.h"
 
 /**
  * Configures the SysTick and defines the functions to wait
@@ -35,8 +35,7 @@ void wait20ns(uint32_t number_of_20_ns) {
 }
 
 void wait10ms(uint32_t number_of_10_ms) {
-	uint32_t i;
-	for (i = 0; i < number_of_10_ms; i++) {
+	for (uint32_t i = 0; i < number_of_10_ms; i++) {
 		// 10,000,000 ns = 10 ms
 		// 10,000,000 ns/20 ns = 500,000
 		wait20ns(500000);  // wait 10ms (assumes 50 MHz clock)

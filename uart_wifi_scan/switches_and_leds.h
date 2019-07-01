@@ -14,10 +14,10 @@
 
 #include <stdbool.h>
 
-/** Defines the colors that the RGB leds supports. */
+/** Colors that are supported by the RGB leds */
 typedef enum {
 	BLUE = 0x04,
-	GREEN = 0x08,
+	GREEN = 0x07,
 	PINK = 0x06,
 	RED = 0x02,
 	NONE = 0,
