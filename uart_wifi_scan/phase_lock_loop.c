@@ -23,7 +23,7 @@
  * Address     |     31  |    30     |  28-22  |   13   |    11   |  6-4    | Name
  * $400FE070   | USERCC2 |  DIV400   | SYSDIV2 | PWRDN2 | BYPASS2 | OSCSRC2 | SYSCTL_RCC2_R
  */
-void initPhaseLockLoop(void) {
+void initPhaseLockLoop() {
 	// 0) Configures the system to use RCC2 for advanced features
 	// such as 400 MHz PLL and non-integer System Clock Divisor
 	SYSCTL_RCC2_R |= SYSCTL_RCC2_USERCC2;

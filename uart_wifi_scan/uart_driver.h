@@ -24,7 +24,7 @@
  *
  * Device Manager/Ports (COM & LPT) Stellaris Virtual Serial Port(COM5)
  */
-void initUart(void);
+void initUart();
 
 /** Sends a char using the UART 0. */
 void putChar(char data);

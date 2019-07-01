@@ -8,7 +8,7 @@
 #define PHASE_LOCK_LOOP_H_
 
 /** Configure the system to get its clock from the Phase Lock Loop (PLL). */
-void initPhaseLockLoop(void);
+void initPhaseLockLoop();
 
 #endif // PHASE_LOCK_LOOP_H_
 

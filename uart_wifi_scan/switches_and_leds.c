@@ -4,7 +4,7 @@
 #include "tm4c123gh6pm.h"
 
 /** Initializes the switches and leds in the Port F. */
-void initSwitchesAndLeds(void) {
+void initSwitchesAndLeds() {
 	SYSCTL_RCGC2_R |= 0x00000020;     // 1) EnableS F clock
 
 	// 2) Test if the F clock is ready
@@ -22,13 +22,13 @@ void initSwitchesAndLeds(void) {
 }
 
 /** Returns true if the Switch 1 in port PF4 is pressed. */
-bool isSwitch1Pressed(void) {
+bool isSwitch1Pressed() {
 	// Switches use Negative logic.
 	return GPIO_PORTF_DATA_R & 0x10 ? false : true;
 }
 
 /** Returns true if the Switch 1 in port PF0 is pressed. */
-bool isSwitch2Pressed(void) {
+bool isSwitch2Pressed() {
 	// Switches use Negative logic.
 	return GPIO_PORTF_DATA_R & 0x01 ? false : true;
 }
@@ -44,7 +44,7 @@ void turnOnLeds(Color color) {
 }
 
 /** Turn off the RGB leds. */
-void turnOffLeds(void) {
+void turnOffLeds() {
 	GPIO_PORTF_DATA_R = NONE;
 }
 

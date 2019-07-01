@@ -14,7 +14,7 @@
 /**
  * Initiates the ritual to configure the UART 0 port.
  */
-void initUart(void) {
+void initUart() {
 	SYSCTL_RCGCUART_R |= 0x0001; // Activate UART0
 	SYSCTL_RCGCGPIO_R |= 0x0001; // Activate port A
 

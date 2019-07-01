@@ -12,7 +12,7 @@
 #include <stdint.h>
 
 /** Initialize SysTick with busy wait running at bus clock. */
-void initSystick(void);
+void initSystick();
 
 /**
  * Waits 20ns * {@code numberOf20ns}. It uses busy waiting.

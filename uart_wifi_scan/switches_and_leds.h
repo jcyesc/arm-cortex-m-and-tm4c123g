@@ -27,13 +27,13 @@ typedef enum {
 } Color;
 
 /** Initializes the switches and leds in the Port F. */
-void initSwitchesAndLeds(void);
+void initSwitchesAndLeds();
 
 /** Returns true if the Switch 1 in port PF4 is pressed. */
-bool isSwitch1Pressed(void);
+bool isSwitch1Pressed();
 
 /** Returns true if the Switch 1 in port PF0 is pressed. */
-bool isSwitch2Pressed(void);
+bool isSwitch2Pressed();
 
 /** Toggle the RGB leds. */
 void toggleLeds(Color color);
@@ -42,7 +42,7 @@ void toggleLeds(Color color);
 void turnOnLeds(Color color);
 
 /** Turn off the RGB leds. */
-void turnOffLeds(void);
+void turnOffLeds();
 
 #endif // SWICHES_AND_LEDS_H_
 

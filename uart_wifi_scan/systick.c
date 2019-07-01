@@ -18,7 +18,7 @@
  * $E000E018   |    0    |      24-bit CURRENT value of SysTick counter         | NVIC_ST_CURRENT_R
  */
 
-void initSystick(void) {
+void initSystick() {
 	NVIC_ST_CTRL_R = 0;                   // disable SysTick during setup
 	NVIC_ST_RELOAD_R = NVIC_ST_RELOAD_M;  // maximum reload value
 	NVIC_ST_CURRENT_R = 0;                // any write to current clears it

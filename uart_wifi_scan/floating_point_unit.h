@@ -18,7 +18,7 @@
 
 #include "tm4c123gh6pm.h"
 
-inline void initFloatingPointUnit(void) {
+inline void initFloatingPointUnit() {
 	NVIC_CPAC_R = 0x00F00000;
 }
 
