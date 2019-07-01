@@ -32,7 +32,7 @@ WifiScanContent wifi_scans[MAX_WIFI_SCANS];
  * 					 an index.
  */
 static uint8_t getRssiIndex(const float rssi_value) {
-	uint8_t rssi_index;
+	uint8_t rssi_index = 0;
 	assert(rssi_value <= 20.0f && rssi_value >= -100.0f);
 
 	rssi_index = -(rssi_value - 20) / 0.5f;
@@ -49,7 +49,7 @@ static uint8_t getRssiIndex(const float rssi_value) {
 static void transmitPacket(const void *data, size_t len) {
 	putString("\n===================================");
 	putString("\nTransmitting packet");
-	putString("\n===================================");
+	putString("\n===================================\n");
 
 	putChars(data, len);
 
@@ -74,13 +74,14 @@ void sendWifiScanResult(size_t ap_count, const char **ssid_list,
 	uint8_t j;
 	uint8_t i;
 	void *data;
+	uint8_t index;
 	WifiScanContent *wifi_scan;
 	putString("\n===================================");
 	putString("\nProcessing Wifi Scan");
-	putString("\n===================================");
+	putString("\n===================================\n");
 
-	data_size = ap_count * sizeof(WifiScanContent);
 	// Cleaning the memory that will be used.
+	data_size = ap_count * sizeof(WifiScanContent);
 	memset(wifi_scans, 0, data_size);
 
 	data = (void *) wifi_scans;
@@ -88,7 +89,9 @@ void sendWifiScanResult(size_t ap_count, const char **ssid_list,
 	for (i = 0; i < ap_count; i++) {
 		assert(strlen(ssid_list[i]) <= SSID_LENGTH);
 		strcpy(wifi_scan->ssid, ssid_list[i]);
-		wifi_scan->rssi_index = getRssiIndex(rssi_list[i]);
+
+		// TODO(jcyesc): Fix this line of code. How to enable the FPU?
+		// wifi_scan->rssi_index = getRssiIndex(rssi_list[i]);
 
 		for (j = 0; j < NETWORK_ID_SIZE; j++) {
 			wifi_scan->bssid[j] = bssid_list[i][j];
