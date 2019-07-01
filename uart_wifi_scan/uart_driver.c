@@ -5,11 +5,12 @@
  * - Assumes a 50MHz bus, clock.
  */
 
+#include "../uart_wifi_scan/uart_driver.h"
+
 #include <stdint.h>
 #include <stdlib.h>
 
-#include "tm4c123gh6pm.h"
-#include "uart_driver.h"
+#include "../uart_wifi_scan/tm4c123gh6pm.h"
 
 /**
  * Initiates the ritual to configure the UART 0 port.

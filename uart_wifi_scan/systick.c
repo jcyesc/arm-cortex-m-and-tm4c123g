@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-#include "tm4c123gh6pm.h"
+#include "../uart_wifi_scan/tm4c123gh6pm.h"
 
 /**
  * Configures the SysTick and defines the functions to wait

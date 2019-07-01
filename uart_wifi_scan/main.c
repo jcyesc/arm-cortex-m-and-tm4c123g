@@ -1,10 +1,11 @@
 #include <string.h>
-#include "phase_lock_loop.h"
-#include "switches_and_leds.h"
-#include "systick.h"
-#include "tm4c123gh6pm.h"
-#include "uart_driver.h"
-#include "wifi_scan.h"
+
+#include "../uart_wifi_scan/phase_lock_loop.h"
+#include "../uart_wifi_scan/switches_and_leds.h"
+#include "../uart_wifi_scan/systick.h"
+#include "../uart_wifi_scan/tm4c123gh6pm.h"
+#include "../uart_wifi_scan/uart_driver.h"
+#include "../uart_wifi_scan/wifi_scan.h"
 
 int main(void);
 
