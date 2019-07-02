@@ -1,11 +1,11 @@
 #include <string.h>
 
-#include "floating_point_unit.h"
-#include "phase_lock_loop.h"
-#include "switches_and_leds.h"
-#include "systick.h"
-#include "uart_driver.h"
-#include "wifi_scan.h"
+#include "../uart_wifi_scan_v1/floating_point_unit.h"
+#include "../uart_wifi_scan_v1/phase_lock_loop.h"
+#include "../uart_wifi_scan_v1/switches_and_leds.h"
+#include "../uart_wifi_scan_v1/systick.h"
+#include "../uart_wifi_scan_v1/uart_driver.h"
+#include "../uart_wifi_scan_v1/wifi_scan.h"
 
 int main();
 

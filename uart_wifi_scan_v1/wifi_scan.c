@@ -1,11 +1,11 @@
-#include "wifi_scan.h"
+#include "../uart_wifi_scan_v1/wifi_scan.h"
 
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 
-#include "uart_driver.h"
+#include "../uart_wifi_scan_v1/uart_driver.h"
 
 #define MAX_WIFI_SCANS 200 // Defines the Maximum number of wifi scans.
 

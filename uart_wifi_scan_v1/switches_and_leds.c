@@ -1,7 +1,8 @@
+#include "../uart_wifi_scan_v1/switches_and_leds.h"
+
 #include <stdbool.h>
 
-#include "switches_and_leds.h"
-#include "tm4c123gh6pm.h"
+#include "../uart_wifi_scan_v1/tm4c123gh6pm.h"
 
 /** Initializes the switches and leds in the Port F. */
 void initSwitchesAndLeds() {

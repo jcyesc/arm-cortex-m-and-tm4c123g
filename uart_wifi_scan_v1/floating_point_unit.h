@@ -16,7 +16,7 @@
  * will hang.
  */
 
-#include "tm4c123gh6pm.h"
+#include "../uart_wifi_scan_v1/tm4c123gh6pm.h"
 
 inline void initFloatingPointUnit() {
 	NVIC_CPAC_R = 0x00F00000;
