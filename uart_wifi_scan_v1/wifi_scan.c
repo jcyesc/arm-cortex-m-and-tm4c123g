@@ -1,11 +1,11 @@
-#include "../uart_wifi_scan_v1/wifi_scan.h"
+#include "wifi_scan.h"
 
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 
-#include "../uart_wifi_scan_v1/uart_driver.h"
+#include "uart_driver.h"
 
 #define MAX_WIFI_SCANS 200 // Defines the Maximum number of wifi scans.
 
@@ -32,8 +32,9 @@ WifiScanContent wifi_scans[MAX_WIFI_SCANS];
  * @param rssi_value The RSSI value that will be converted into
  * 					 an index.
  *
- * Note: If the Floating Point Unit is not enabled, this function
- *       won't work.
+ * Note: The Floating Point Unit has to be enabled because when
+ * the division operation is compiled, the compiler uses the assembly
+ * instructions supported by the FPU.
  */
 static uint8_t getRssiIndex(const float rssi_value) {
 	assert(rssi_value <= 20.0f && rssi_value >= -100.0f);
