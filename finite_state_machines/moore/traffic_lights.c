@@ -64,16 +64,25 @@ State states[4] = {
 int main() {
 	printf("\nMoore Finite State Machines");
 
-	uint32_t input = 0;
+	uint32_t input = 0; // Possible inputs: 0, 1, 2, 3 (number of elements in the array usually).
 
-	State *current_state_ptr = goSouthbound;
+	State *current_state_ptr = goSouthbound; // Initial state
 
 	while (input <= 3) {
+		// Step 1 - Output the value
 		printf("\n%s Ox%x ", current_state_ptr->name, current_state_ptr->output);
 		fflush(stdout);
+
+		// Step 2 - Wait
 		sleep(current_state_ptr->delay);
+
+		// Step 3 - Get new input for the sensors
 		printf("\nEnter the sensors input [0-3] (4 to exit): "); // 00 = 0, 01 = 1, 10 = 2, 11 = 3 (binary = decimal)
 		scanf("%d", &input); // Reading sensors
+
+		if (input > 3 ) break;
+
+		// Step 4 - Go to the next state depending on the input and current state
 		current_state_ptr = (State *) current_state_ptr->nextStates[input];
 	}
 
